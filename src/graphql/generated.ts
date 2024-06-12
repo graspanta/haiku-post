@@ -695,6 +695,24 @@ export type Users_Updates = {
   where: Users_Bool_Exp;
 };
 
+export type InsertHaikuMutationVariables = Exact<{
+  id: Scalars['String']['input'];
+  haiku: Scalars['String']['input'];
+  owner_id: Scalars['String']['input'];
+}>;
+
+export type InsertHaikuMutation = {
+  __typename?: 'mutation_root';
+  insert_haikus_one?: {
+    __typename?: 'haikus';
+    id: string;
+    haiku: string;
+    owner_id: string;
+    updated_at: any;
+    created_at: any;
+  } | null;
+};
+
 export type InsertUserMutationVariables = Exact<{
   id: Scalars['String']['input'];
   name: Scalars['String']['input'];
@@ -731,6 +749,56 @@ export type UserByIdQuery = {
   } | null;
 };
 
+export const InsertHaikuDocument = gql`
+  mutation InsertHaiku($id: String!, $haiku: String!, $owner_id: String!) {
+    insert_haikus_one(object: { id: $id, haiku: $haiku, owner_id: $owner_id }) {
+      id
+      haiku
+      owner_id
+      updated_at
+      created_at
+    }
+  }
+`;
+export type InsertHaikuMutationFn = Apollo.MutationFunction<
+  InsertHaikuMutation,
+  InsertHaikuMutationVariables
+>;
+
+/**
+ * __useInsertHaikuMutation__
+ *
+ * To run a mutation, you first call `useInsertHaikuMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useInsertHaikuMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [insertHaikuMutation, { data, loading, error }] = useInsertHaikuMutation({
+ *   variables: {
+ *      id: // value for 'id'
+ *      haiku: // value for 'haiku'
+ *      owner_id: // value for 'owner_id'
+ *   },
+ * });
+ */
+export function useInsertHaikuMutation(
+  baseOptions?: Apollo.MutationHookOptions<InsertHaikuMutation, InsertHaikuMutationVariables>,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useMutation<InsertHaikuMutation, InsertHaikuMutationVariables>(
+    InsertHaikuDocument,
+    options,
+  );
+}
+export type InsertHaikuMutationHookResult = ReturnType<typeof useInsertHaikuMutation>;
+export type InsertHaikuMutationResult = Apollo.MutationResult<InsertHaikuMutation>;
+export type InsertHaikuMutationOptions = Apollo.BaseMutationOptions<
+  InsertHaikuMutation,
+  InsertHaikuMutationVariables
+>;
 export const InsertUserDocument = gql`
   mutation InsertUser($id: String!, $name: String!, $email: String!) {
     insert_users_one(object: { id: $id, name: $name, email: $email, avatar_url: "" }) {
