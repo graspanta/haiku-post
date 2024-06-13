@@ -1,26 +1,20 @@
-import supabase from '../supabase/client';
+import { fireAuth } from '../firebase/config';
 import { useSetRecoilState } from 'recoil';
 import { AuthCredential } from '../stores/authCredential';
 import { AuthCredentialLoaded } from '../stores/authCredentialLoaded';
-import { useEffect } from 'react';
-// import useAuth from './hooks/useAuth';
-// import LogoutButton from './LogoutButton';
+import { useEffect, PropsWithChildren } from 'react';
 
-interface Props {
-  children: React.ReactNode;
-}
-
-export const AuthListener = ({ children }: Props) => {
+export const AuthListener = ({ children }: PropsWithChildren<{}>) => {
   const setCredential = useSetRecoilState(AuthCredential);
   const setLoaded = useSetRecoilState(AuthCredentialLoaded);
 
   useEffect(() => {
-    const { data: authData } = supabase.auth.onAuthStateChange(async (_, session) => {
-      setCredential(session?.user.id || undefined);
+    const unsubscriber = fireAuth.onAuthStateChanged(async credential => {
+      setCredential(credential?.uid || undefined);
       setLoaded(true);
     });
 
-    return () => authData.subscription.unsubscribe();
+    return unsubscriber;
   });
 
   return <>{children}</>;

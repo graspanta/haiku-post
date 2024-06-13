@@ -1,9 +1,10 @@
+import CssBaseline from '@mui/material/CssBaseline';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { RecoilRoot } from 'recoil';
 import { ApolloClient, InMemoryCache, ApolloProvider, createHttpLink } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
-// import { AuthListener } from './providers/AuthListener';
+import { AuthListener } from './providers/AuthListener';
 import { Navigate, RouterProvider, createBrowserRouter } from 'react-router-dom';
 import { AuthLayout } from './layouts/AuthLayout';
 import { HomeLayout } from './layouts/HomeLayout';
@@ -13,6 +14,8 @@ import { LogIn } from './pages/logIn';
 import { SignOut } from './pages/signOut';
 import { SignUp } from './pages/signUp';
 import { RememberMe } from './pages/rememberMe';
+import { AboutPage } from './pages/aboutPage';
+import { GlobalAccout } from './providers/GlobalAccount';
 
 const httpLink = createHttpLink({
   uri: import.meta.env.VITE_GRAPHQL_END_POINT_ORIGIN,
@@ -38,6 +41,7 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
     children: [
       { path: '/', element: <Home /> },
+      { path: 'about', element: <AboutPage /> },
       // { path: 'compose', element: <Compose /> },
       { path: 'read', element: <Navigate to="/" /> },
       // { path: 'correct/:haikuId', element: <Read /> },
@@ -52,6 +56,7 @@ const router = createBrowserRouter([
       { path: 'login', element: <LogIn /> },
       { path: 'signout', element: <SignOut /> },
       { path: 'forget', element: <RememberMe /> },
+      // { path: 'about', element: <AboutPage /> },
     ],
   },
 ]);
@@ -60,9 +65,12 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <RecoilRoot>
       <ApolloProvider client={client}>
-        {/* <AuthListener> */}
-        <RouterProvider router={router} />
-        {/* </AuthListener> */}
+        <AuthListener>
+          <GlobalAccout>
+            <CssBaseline />
+            <RouterProvider router={router} />
+          </GlobalAccout>
+        </AuthListener>
       </ApolloProvider>
     </RecoilRoot>
   </React.StrictMode>,

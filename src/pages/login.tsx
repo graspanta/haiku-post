@@ -1,6 +1,6 @@
 import { Button, Card, TextField, Typography } from '@mui/material';
 import { Logo } from '../components/Logo';
-import { useLogIn } from '../hooks/useLogIn'
+import { useLogIn } from '../hooks/useLogIn';
 
 export const LogIn = () => {
   const { ref, error, loading, login } = useLogIn();

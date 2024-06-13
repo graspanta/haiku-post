@@ -5,10 +5,10 @@ export const Logo = () => {
       alt="Hawk Logo"
       style={{
         maxWidth: '100%',
-        width: 100,
+        width: 70,
         display: 'flex',
         alignItems: 'center',
-        marginLeft: 10,
+        // marginLeft: 10,
       }}
     />
   );

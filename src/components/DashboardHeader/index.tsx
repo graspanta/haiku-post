@@ -1,17 +1,17 @@
-import { Menu } from '@mui/icons-material';
-import { AppBar, IconButton, Toolbar, Typography } from '@mui/material';
+import { Menu, Brush } from '@mui/icons-material';
+import { AppBar, Button, IconButton, Toolbar } from '@mui/material';
 import { Link } from 'react-router-dom';
+import { SignOutButton } from '../SignOutButton';
 import { SearchBar } from './SearchBar';
 // import { useUserByIdQuery } from '../../graphql/generated';
-import { useAuth } from '../../hooks/useAuth';
-import { SignInWithGitHub } from '../SignInWithGitHub';
-import { LogOutButton } from '../LogOutButton';
+import { useRecoilValue } from 'recoil';
+import { GlobalUser } from '../../stores/user';
 
 export const DashboardHeader = () => {
-  const { session: isLogin } = useAuth();
   // const { data } = useUserByIdQuery({
   //   variables: { id: 'testid' },
   // });
+  const globalUser = useRecoilValue(GlobalUser);
 
   return (
     <AppBar elevation={0} color="inherit" enableColorOnDark>
@@ -22,8 +22,20 @@ export const DashboardHeader = () => {
 
         <SearchBar />
 
-        <div style={{ marginLeft: 10 }}>{isLogin ? <LogOutButton /> : <SignInWithGitHub />}</div>
-
+        {globalUser ? (
+          <>
+            <Link to="/upload">
+              <IconButton>
+                <Brush />
+              </IconButton>
+            </Link>
+            <SignOutButton />
+          </>
+        ) : (
+          <Button variant="outlined" color="primary" href="/login">
+            ログイン
+          </Button>
+        )}
         {/* <IconButton>
           <Typography>{data?.users_by_pk?.name}</Typography>
         </IconButton> */}

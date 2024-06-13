@@ -83,4 +83,4 @@ export const useSignUp = () => {
     error,
     loading,
   };
-}
+};

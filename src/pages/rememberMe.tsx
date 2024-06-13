@@ -54,4 +54,4 @@ export const RememberMe = () => {
       </div>
     </Card>
   );
-}
+};
