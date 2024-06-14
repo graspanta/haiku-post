@@ -70,6 +70,7 @@ export type Haikus = {
   created_at: Scalars['timestamp']['output'];
   haiku: Scalars['String']['output'];
   id: Scalars['String']['output'];
+  image_url?: Maybe<Scalars['String']['output']>;
   owner_id: Scalars['String']['output'];
   updated_at: Scalars['timestamp']['output'];
 };
@@ -103,6 +104,7 @@ export type Haikus_Bool_Exp = {
   created_at?: InputMaybe<Timestamp_Comparison_Exp>;
   haiku?: InputMaybe<String_Comparison_Exp>;
   id?: InputMaybe<String_Comparison_Exp>;
+  image_url?: InputMaybe<String_Comparison_Exp>;
   owner_id?: InputMaybe<String_Comparison_Exp>;
   updated_at?: InputMaybe<Timestamp_Comparison_Exp>;
 };
@@ -118,6 +120,7 @@ export type Haikus_Insert_Input = {
   created_at?: InputMaybe<Scalars['timestamp']['input']>;
   haiku?: InputMaybe<Scalars['String']['input']>;
   id?: InputMaybe<Scalars['String']['input']>;
+  image_url?: InputMaybe<Scalars['String']['input']>;
   owner_id?: InputMaybe<Scalars['String']['input']>;
   updated_at?: InputMaybe<Scalars['timestamp']['input']>;
 };
@@ -128,6 +131,7 @@ export type Haikus_Max_Fields = {
   created_at?: Maybe<Scalars['timestamp']['output']>;
   haiku?: Maybe<Scalars['String']['output']>;
   id?: Maybe<Scalars['String']['output']>;
+  image_url?: Maybe<Scalars['String']['output']>;
   owner_id?: Maybe<Scalars['String']['output']>;
   updated_at?: Maybe<Scalars['timestamp']['output']>;
 };
@@ -138,6 +142,7 @@ export type Haikus_Min_Fields = {
   created_at?: Maybe<Scalars['timestamp']['output']>;
   haiku?: Maybe<Scalars['String']['output']>;
   id?: Maybe<Scalars['String']['output']>;
+  image_url?: Maybe<Scalars['String']['output']>;
   owner_id?: Maybe<Scalars['String']['output']>;
   updated_at?: Maybe<Scalars['timestamp']['output']>;
 };
@@ -163,6 +168,7 @@ export type Haikus_Order_By = {
   created_at?: InputMaybe<Order_By>;
   haiku?: InputMaybe<Order_By>;
   id?: InputMaybe<Order_By>;
+  image_url?: InputMaybe<Order_By>;
   owner_id?: InputMaybe<Order_By>;
   updated_at?: InputMaybe<Order_By>;
 };
@@ -181,6 +187,8 @@ export enum Haikus_Select_Column {
   /** column name */
   Id = 'id',
   /** column name */
+  ImageUrl = 'image_url',
+  /** column name */
   OwnerId = 'owner_id',
   /** column name */
   UpdatedAt = 'updated_at',
@@ -191,6 +199,7 @@ export type Haikus_Set_Input = {
   created_at?: InputMaybe<Scalars['timestamp']['input']>;
   haiku?: InputMaybe<Scalars['String']['input']>;
   id?: InputMaybe<Scalars['String']['input']>;
+  image_url?: InputMaybe<Scalars['String']['input']>;
   owner_id?: InputMaybe<Scalars['String']['input']>;
   updated_at?: InputMaybe<Scalars['timestamp']['input']>;
 };
@@ -208,6 +217,7 @@ export type Haikus_Stream_Cursor_Value_Input = {
   created_at?: InputMaybe<Scalars['timestamp']['input']>;
   haiku?: InputMaybe<Scalars['String']['input']>;
   id?: InputMaybe<Scalars['String']['input']>;
+  image_url?: InputMaybe<Scalars['String']['input']>;
   owner_id?: InputMaybe<Scalars['String']['input']>;
   updated_at?: InputMaybe<Scalars['timestamp']['input']>;
 };
@@ -220,6 +230,8 @@ export enum Haikus_Update_Column {
   Haiku = 'haiku',
   /** column name */
   Id = 'id',
+  /** column name */
+  ImageUrl = 'image_url',
   /** column name */
   OwnerId = 'owner_id',
   /** column name */
@@ -698,6 +710,7 @@ export type Users_Updates = {
 export type InsertHaikuMutationVariables = Exact<{
   id: Scalars['String']['input'];
   haiku: Scalars['String']['input'];
+  image_url: Scalars['String']['input'];
   owner_id: Scalars['String']['input'];
 }>;
 
@@ -707,6 +720,7 @@ export type InsertHaikuMutation = {
     __typename?: 'haikus';
     id: string;
     haiku: string;
+    image_url?: string | null;
     owner_id: string;
     updated_at: any;
     created_at: any;
@@ -750,10 +764,13 @@ export type UserByIdQuery = {
 };
 
 export const InsertHaikuDocument = gql`
-  mutation InsertHaiku($id: String!, $haiku: String!, $owner_id: String!) {
-    insert_haikus_one(object: { id: $id, haiku: $haiku, owner_id: $owner_id }) {
+  mutation InsertHaiku($id: String!, $haiku: String!, $image_url: String!, $owner_id: String!) {
+    insert_haikus_one(
+      object: { id: $id, haiku: $haiku, image_url: $image_url, owner_id: $owner_id }
+    ) {
       id
       haiku
+      image_url
       owner_id
       updated_at
       created_at
@@ -780,6 +797,7 @@ export type InsertHaikuMutationFn = Apollo.MutationFunction<
  *   variables: {
  *      id: // value for 'id'
  *      haiku: // value for 'haiku'
+ *      image_url: // value for 'image_url'
  *      owner_id: // value for 'owner_id'
  *   },
  * });

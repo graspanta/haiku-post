@@ -4,23 +4,22 @@ import { GlobalUser } from '../stores/user';
 import { useUserByIdLazyQuery } from '../graphql/generated';
 import { AuthCredential } from '../stores/authCredential';
 import { AuthCredentialLoaded } from '../stores/authCredentialLoaded';
-// import { AccountLoaded } from '../stores/accountLoaded';
+import { AccountLoaded } from '../stores/accountLoaded';
 
 export const GlobalAccount = ({ children }: PropsWithChildren<{}>) => {
   const [userQuery, { data: apolloData, error: apolloError, loading: apolloLoding }] =
     useUserByIdLazyQuery();
-
   const [globalUser, setGlobalUser] = useRecoilState(GlobalUser);
   const credential = useRecoilValue(AuthCredential);
   const authLoaded = useRecoilValue(AuthCredentialLoaded);
 
-//   const setAccountLoaded = useSetRecoilState(AccountLoaded);
+  const setAccountLoaded = useSetRecoilState(AccountLoaded);
 
   useEffect(() => {
     if (authLoaded) {
       if (credential) {
         if (!apolloLoding && !globalUser?.id) {
-        //   setAccountLoaded(false);
+          setAccountLoaded(false);
           userQuery({ variables: { id: credential } });
         }
       } else {
@@ -40,11 +39,11 @@ export const GlobalAccount = ({ children }: PropsWithChildren<{}>) => {
           setGlobalUser(undefined);
         }
       }
-        // setAccountLoaded(true);
+      setAccountLoaded(true);
     }
   }, [authLoaded, apolloData]);
 
-  useEffect(() => { 
+  useEffect(() => {
     if (apolloError?.message) {
       console.error(apolloError?.message);
       setGlobalUser(undefined);

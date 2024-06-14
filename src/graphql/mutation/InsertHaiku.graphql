@@ -1,7 +1,10 @@
-mutation InsertHaiku($id: String!, $haiku: String!, $owner_id: String!) {
-  insert_haikus_one(object: { id: $id, haiku: $haiku, owner_id: $owner_id }) {
+mutation InsertHaiku($id: String!, $haiku: String!, $image_url: String!, $owner_id: String!) {
+  insert_haikus_one(
+    object: { id: $id, haiku: $haiku, image_url: $image_url, owner_id: $owner_id }
+  ) {
     id
     haiku
+    image_url
     owner_id
     updated_at
     created_at

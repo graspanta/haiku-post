@@ -15,7 +15,8 @@ import { SignOut } from './pages/signOut';
 import { SignUp } from './pages/signUp';
 import { RememberMe } from './pages/rememberMe';
 import { AboutPage } from './pages/aboutPage';
-import { GlobalAccout } from './providers/GlobalAccount';
+import { GlobalAccount } from './providers/GlobalAccount';
+import { Compose } from './pages/compose';
 
 const httpLink = createHttpLink({
   uri: import.meta.env.VITE_GRAPHQL_END_POINT_ORIGIN,
@@ -42,7 +43,7 @@ const router = createBrowserRouter([
     children: [
       { path: '/', element: <Home /> },
       { path: 'about', element: <AboutPage /> },
-      // { path: 'compose', element: <Compose /> },
+      { path: 'compose', element: <Compose /> },
       { path: 'read', element: <Navigate to="/" /> },
       // { path: 'correct/:haikuId', element: <Read /> },
     ],
@@ -56,7 +57,6 @@ const router = createBrowserRouter([
       { path: 'login', element: <LogIn /> },
       { path: 'signout', element: <SignOut /> },
       { path: 'forget', element: <RememberMe /> },
-      // { path: 'about', element: <AboutPage /> },
     ],
   },
 ]);
@@ -66,10 +66,10 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
     <RecoilRoot>
       <ApolloProvider client={client}>
         <AuthListener>
-          <GlobalAccout>
+          <GlobalAccount>
             <CssBaseline />
             <RouterProvider router={router} />
-          </GlobalAccout>
+          </GlobalAccount>
         </AuthListener>
       </ApolloProvider>
     </RecoilRoot>

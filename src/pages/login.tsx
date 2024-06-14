@@ -61,7 +61,7 @@ export const LogIn = () => {
       </div>
       <div>
         <Button href="/signup" color="primary">
-          登録(とうろく)はこちら
+          はじめての方はこちら
         </Button>
       </div>
       <div>

@@ -15,7 +15,7 @@ export const DashboardHeader = () => {
 
   return (
     <AppBar elevation={0} color="inherit" enableColorOnDark>
-      <Toolbar style={{ justifyContent: 'flex-start' }}>
+      <Toolbar style={{ justifyContent: 'space-between' }}>
         <Link to="/">
           <Menu color="action" sx={{ fontSize: 40 }} />
         </Link>
@@ -24,7 +24,7 @@ export const DashboardHeader = () => {
 
         {globalUser ? (
           <>
-            <Link to="/upload">
+            <Link to="/compose">
               <IconButton>
                 <Brush />
               </IconButton>

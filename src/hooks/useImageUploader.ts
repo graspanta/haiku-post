@@ -6,11 +6,14 @@ import { useRecoilValue } from 'recoil';
 import { GlobalUser } from '../stores/user';
 
 interface UploadProps {
+  file: {
+    image: File;
+  };
   haiku: string;
   ownerId: string;
 }
 
-export const useUploadHaiku = () => {
+export const useImageUploader = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<Error>();
   const [mutation, { error: apolloError }] = useInsertHaikuMutation();
@@ -21,7 +24,7 @@ export const useUploadHaiku = () => {
     return storage.ref(`${path}/${id}.${exe}`).put(file);
   };
 
-  const upload = async ({ haiku, ownerId }: UploadProps) => {
+  const upload = async ({ file, haiku, ownerId }: UploadProps) => {
     if (!user?.id) {
       return;
     }
@@ -30,11 +33,12 @@ export const useUploadHaiku = () => {
     const haikuId = uuidv4();
 
     try {
-      const haikuUploadTask = await uploadStorage(haikuId, file.haiku, 'haikus');
+      const imageUploadTask = await uploadStorage(haikuId, file.image, 'haikus');
       const res = await mutation({
         variables: {
           id: haikuId,
           haiku,
+          image_url: imageUploadTask.ref.fullPath,
           owner_id: ownerId,
         },
       });

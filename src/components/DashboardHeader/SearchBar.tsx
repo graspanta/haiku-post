@@ -10,7 +10,7 @@ export const SearchBar = () => {
         paddingLeft: 10,
         display: 'flex',
         alignItems: 'center',
-        maxWidth: 400,
+        maxWidth: 500,
         flex: 1,
         overflow: 'hidden',
         marginLeft: 10,
