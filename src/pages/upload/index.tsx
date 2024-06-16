@@ -1,4 +1,4 @@
-import { Dialog, DialogTitle, DialogContent, Grid, Divider, CircularProgress } from '@mui/material';
+import { Dialog, DialogContent, Grid, CircularProgress } from '@mui/material';
 import { HaikuImageSelector } from '../../components/HaikuImageSelector';
 import { UploadForm } from '../../components/UploadForm';
 import { useState, useEffect } from 'react';
@@ -24,17 +24,12 @@ export const Compose = () => {
 
   return (
     <Dialog open={true} fullWidth={true} maxWidth="md">
-      {/* <DialogTitle>投稿(とうこう)する</DialogTitle> */}
-      {/* <Divider /> */}
       <DialogContent style={{ marginTop: 40 }}>
         {user?.id ? (
           <Grid container spacing={4}>
             <Grid item xs style={{ marginRight: 10 }}>
               <HaikuImageSelector imageFile={imageFile} setImageFile={setImageFile} />
               <UploadForm imageFile={imageFile} />
-              {/* </Grid> */}
-              {/* <Divider orientation="vertical" flexItem /> */}
-              {/* <Grid item xs> */}
             </Grid>
           </Grid>
         ) : (

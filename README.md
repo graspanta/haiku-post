@@ -1,30 +1,39 @@
-# React + TypeScript + Vite
+# haiku-post
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## 概要
+haiku-postは、俳句投稿サービスです。
 
-Currently, two official plugins are available:
+<img src="images/architecture.png" width="400" />
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+<img src="images/home.png" width="400" />
 
-## Expanding the ESLint configuration
+## 機能一覧
+- ユーザ登録 
+- ユーザログイン
+- 俳句投稿
+- 画像アップロード
+- マイページ
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-};
-```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+## 開発環境
+<table>
+  <tr>
+    <td>言語</td>
+    <td>TypeScript 5.2.2</td>
+  </tr>
+   <tr>
+    <td>データベース</td>
+    <td>PostgreSQL 15.7</td>
+  </tr>
+  <tr>
+    <td>フレームワーク</td>
+    <td>Vite 5.2.0, Material UI 5.15.19</td>
+  </tr>
+  <tr>
+    <td>サービス</td>
+    <td>Firebase, Hasura</td>
+  </tr>
+   <tr>
+    <td>主なライブラリ</td>
+    <td>Apollo Client 3.10.4, GraphQL 16.8.1</td>
+  </tr>
+</table>

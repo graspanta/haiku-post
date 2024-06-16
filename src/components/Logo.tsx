@@ -8,7 +8,6 @@ export const Logo = () => {
         width: 70,
         display: 'flex',
         alignItems: 'center',
-        // marginLeft: 10,
       }}
     />
   );

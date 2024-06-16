@@ -1,8 +1,6 @@
 import { BrushTwoTone, HomeOutlined } from '@mui/icons-material';
 import { AppBar, Avatar, Button, IconButton, Toolbar } from '@mui/material';
 import { Link } from 'react-router-dom';
-// import { SignOutButton } from '../SignOutButton';
-// import { SearchBar } from './SearchBar';
 // import { useUserByIdQuery } from '../../graphql/generated';
 import { useRecoilValue } from 'recoil';
 import { GlobalUser } from '../../stores/user';
@@ -19,14 +17,11 @@ export const DashboardHeader = () => {
         <div style={{ display: 'flex' }}>
           <Link to="/">
             <HomeOutlined color="action" sx={{ fontSize: 40 }} />
-            {/* <IconButton>ホーム</IconButton> */}
           </Link>
           <Link to="/about">
             <IconButton>はいく</IconButton>
           </Link>
         </div>
-
-        {/* <SearchBar /> */}
 
         {globalUser ? (
           <>
@@ -43,7 +38,6 @@ export const DashboardHeader = () => {
                   <Avatar />
                 </IconButton>
               </Link>
-              {/* <SignOutButton /> */}
             </div>
           </>
         ) : (

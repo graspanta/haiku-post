@@ -31,7 +31,7 @@ export const MyPage = () => {
   return (
     <Container>
       ようこそ{data?.users_by_pk?.name}!
-      <div style={{marginTop: 30}}>
+      <div style={{ marginTop: 30 }}>
         <SignOutButton />
       </div>
     </Container>
