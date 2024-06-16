@@ -1,8 +1,8 @@
 import { BrushTwoTone, HomeOutlined } from '@mui/icons-material';
-import { AppBar, Button, IconButton, Toolbar } from '@mui/material';
+import { AppBar, Avatar, Button, IconButton, Toolbar } from '@mui/material';
 import { Link } from 'react-router-dom';
-import { SignOutButton } from '../SignOutButton';
-import { SearchBar } from './SearchBar';
+// import { SignOutButton } from '../SignOutButton';
+// import { SearchBar } from './SearchBar';
 // import { useUserByIdQuery } from '../../graphql/generated';
 import { useRecoilValue } from 'recoil';
 import { GlobalUser } from '../../stores/user';
@@ -37,7 +37,13 @@ export const DashboardHeader = () => {
                   つくる
                 </IconButton>
               </Link>
-              <SignOutButton />
+
+              <Link to="/mypage">
+                <IconButton>
+                  <Avatar />
+                </IconButton>
+              </Link>
+              {/* <SignOutButton /> */}
             </div>
           </>
         ) : (

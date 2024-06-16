@@ -2,7 +2,7 @@ import { Button } from '@mui/material';
 
 export const SignOutButton = () => {
   return (
-    <Button variant="outlined" color="primary" href="/signout">
+    <Button variant="contained" color="warning" href="/signout">
       ログアウト
     </Button>
   );

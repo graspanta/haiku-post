@@ -21,7 +21,7 @@ export const Home = () => {
               haiku={haiku.haiku}
               owner={haiku.owner?.name || ''}
               created={haiku.created_at}
-              fetcher={() => storage.ref(haiku.image_url).getDownloadURL()}
+              fetcher={() => storage.ref(haiku.image_url!).getDownloadURL()}
             />
             {/* </Link> */}
           </Grid>

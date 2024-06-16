@@ -17,7 +17,8 @@ import { RememberMe } from './pages/rememberMe';
 import { AboutPage } from './pages/aboutPage';
 import { GlobalAccount } from './providers/GlobalAccount';
 import { Compose } from './pages/upload';
-import { Details } from '@mui/icons-material';
+import { Details } from './pages/detail';
+import { MyPage } from './pages/myPage';
 
 const httpLink = createHttpLink({
   uri: import.meta.env.VITE_GRAPHQL_END_POINT_ORIGIN,
@@ -45,6 +46,7 @@ const router = createBrowserRouter([
       { path: '/', element: <Home /> },
       { path: 'about', element: <AboutPage /> },
       { path: 'compose', element: <Compose /> },
+      { path: 'mypage', element: <MyPage /> },
       { path: 'detail', element: <Navigate to="/" /> },
       { path: 'detail/:haikuId', element: <Details /> },
     ],

@@ -30,12 +30,11 @@ export const Compose = () => {
         {user?.id ? (
           <Grid container spacing={4}>
             <Grid item xs style={{ marginRight: 10 }}>
-            <HaikuImageSelector imageFile={imageFile} setImageFile={setImageFile} />
-            <UploadForm imageFile={imageFile} />
-            {/* </Grid> */}
-            {/* <Divider orientation="vertical" flexItem /> */}
-            {/* <Grid item xs> */}
-              
+              <HaikuImageSelector imageFile={imageFile} setImageFile={setImageFile} />
+              <UploadForm imageFile={imageFile} />
+              {/* </Grid> */}
+              {/* <Divider orientation="vertical" flexItem /> */}
+              {/* <Grid item xs> */}
             </Grid>
           </Grid>
         ) : (
