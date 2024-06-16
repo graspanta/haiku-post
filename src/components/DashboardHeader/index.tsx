@@ -1,4 +1,4 @@
-import { Menu, Brush } from '@mui/icons-material';
+import { BrushTwoTone, HomeOutlined } from '@mui/icons-material';
 import { AppBar, Button, IconButton, Toolbar } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { SignOutButton } from '../SignOutButton';
@@ -16,20 +16,29 @@ export const DashboardHeader = () => {
   return (
     <AppBar elevation={0} color="inherit" enableColorOnDark>
       <Toolbar style={{ justifyContent: 'space-between' }}>
-        <Link to="/">
-          <Menu color="action" sx={{ fontSize: 40 }} />
-        </Link>
+        <div style={{ display: 'flex' }}>
+          <Link to="/">
+            <HomeOutlined color="action" sx={{ fontSize: 40 }} />
+            {/* <IconButton>ホーム</IconButton> */}
+          </Link>
+          <Link to="/about">
+            <IconButton>はいく</IconButton>
+          </Link>
+        </div>
 
-        <SearchBar />
+        {/* <SearchBar /> */}
 
         {globalUser ? (
           <>
-            <Link to="/compose">
-              <IconButton>
-                <Brush />
-              </IconButton>
-            </Link>
-            <SignOutButton />
+            <div style={{ display: 'flex' }}>
+              <Link to="/compose">
+                <IconButton>
+                  <BrushTwoTone sx={{ fontSize: 40 }} />
+                  つくる
+                </IconButton>
+              </Link>
+              <SignOutButton />
+            </div>
           </>
         ) : (
           <Button variant="outlined" color="primary" href="/login">

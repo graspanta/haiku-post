@@ -18,10 +18,10 @@ export function UploadForm({ imageFile }: UploadFormProps) {
 
   const submit = () => {
     if (!user?.id) {
-      return setErrorMessage(new Error('ログインされていません。'));
+      return setErrorMessage(new Error('ログインしてください。'));
     }
     if (!imageFile) {
-      return setErrorMessage(new Error('ファイルを選択してください。'));
+      return setErrorMessage(new Error('画像ファイルを選択してください。'));
     }
     if (!haikuRef.current?.value) {
       return setErrorMessage(new Error('俳句を入力してください。'));
@@ -47,7 +47,7 @@ export function UploadForm({ imageFile }: UploadFormProps) {
   return (
     <>
       <label style={{ display: 'block', paddingBottom: 40 }}>
-        <Typography variant="body2">俳句</Typography>
+        <Typography variant="body2">俳句(はいく)</Typography>
         <TextField fullWidth size="small" variant="outlined" inputRef={haikuRef} />
       </label>
 
@@ -61,7 +61,7 @@ export function UploadForm({ imageFile }: UploadFormProps) {
 
       <div style={{ display: 'flex', justifyContent: 'center' }}>
         <Button variant="contained" color="primary" disabled={loading} onClick={submit}>
-          {loading ? 'アップロード中' : '俳句をアップロード'}
+          {loading ? 'アップロード中' : 'おくる'}
         </Button>
       </div>
     </>

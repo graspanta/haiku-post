@@ -52,7 +52,7 @@ export const HaikuImageSelector = ({ imageFile, setImageFile }: ImageSelectProps
 
       {!imageURL && (
         <Button onClick={handleClick} variant="contained" color="primary">
-          ファイルを選択
+            写真(しゃしん)
         </Button>
       )}
     </div>

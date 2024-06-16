@@ -1,0 +1,18 @@
+query Hailkus {
+  haikus {
+    id
+    haiku
+    image_url
+    owner_id
+    updated_at
+    owner {
+      id
+      name
+      email
+      avatar_url
+      created_at
+      updated_at
+    }
+    created_at
+  }
+}

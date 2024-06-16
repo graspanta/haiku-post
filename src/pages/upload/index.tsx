@@ -24,17 +24,18 @@ export const Compose = () => {
 
   return (
     <Dialog open={true} fullWidth={true} maxWidth="md">
-      <DialogTitle>画像のアップロード</DialogTitle>
-      <Divider />
-      <DialogContent style={{ marginTop: 40, marginBottom: 40 }}>
+      {/* <DialogTitle>投稿(とうこう)する</DialogTitle> */}
+      {/* <Divider /> */}
+      <DialogContent style={{ marginTop: 40 }}>
         {user?.id ? (
           <Grid container spacing={4}>
             <Grid item xs style={{ marginRight: 10 }}>
-              <HaikuImageSelector imageFile={imageFile} setImageFile={setImageFile} />
-            </Grid>
-            <Divider orientation="vertical" flexItem />
-            <Grid item xs>
-              <UploadForm imageFile={imageFile} />
+            <HaikuImageSelector imageFile={imageFile} setImageFile={setImageFile} />
+            <UploadForm imageFile={imageFile} />
+            {/* </Grid> */}
+            {/* <Divider orientation="vertical" flexItem /> */}
+            {/* <Grid item xs> */}
+              
             </Grid>
           </Grid>
         ) : (

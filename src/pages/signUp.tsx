@@ -7,8 +7,13 @@ export const SignUp = () => {
 
   return (
     <Card style={{ width: '95%', maxWidth: 550, padding: '50px 70px' }}>
-      <div style={{ width: 80, marginBottom: 40 }}>
-        <Logo />
+      <div style={{ marginBottom: 40, display: 'flex' }}>
+        <div style={{ flex: '20%' }}>
+          <Logo />
+        </div>
+        <div style={{ flex: '80%', marginTop: 10 }}>
+          <Typography>はいくポスト</Typography>
+        </div>
       </div>
 
       <Typography variant="h5" style={{ marginBottom: 40 }}>

@@ -19,7 +19,6 @@ export type Scalars = {
   Boolean: { input: boolean; output: boolean };
   Int: { input: number; output: number };
   Float: { input: number; output: number };
-  timestamp: { input: any; output: any };
   timestamptz: { input: any; output: any };
 };
 
@@ -67,12 +66,14 @@ export enum Cursor_Ordering {
 /** columns and relationships of "haikus" */
 export type Haikus = {
   __typename?: 'haikus';
-  created_at: Scalars['timestamp']['output'];
+  created_at: Scalars['timestamptz']['output'];
   haiku: Scalars['String']['output'];
   id: Scalars['String']['output'];
   image_url?: Maybe<Scalars['String']['output']>;
+  /** An object relationship */
+  owner?: Maybe<Users>;
   owner_id: Scalars['String']['output'];
-  updated_at: Scalars['timestamp']['output'];
+  updated_at: Scalars['timestamptz']['output'];
 };
 
 /** aggregated selection of "haikus" */
@@ -101,12 +102,13 @@ export type Haikus_Bool_Exp = {
   _and?: InputMaybe<Array<Haikus_Bool_Exp>>;
   _not?: InputMaybe<Haikus_Bool_Exp>;
   _or?: InputMaybe<Array<Haikus_Bool_Exp>>;
-  created_at?: InputMaybe<Timestamp_Comparison_Exp>;
+  created_at?: InputMaybe<Timestamptz_Comparison_Exp>;
   haiku?: InputMaybe<String_Comparison_Exp>;
   id?: InputMaybe<String_Comparison_Exp>;
   image_url?: InputMaybe<String_Comparison_Exp>;
+  owner?: InputMaybe<Users_Bool_Exp>;
   owner_id?: InputMaybe<String_Comparison_Exp>;
-  updated_at?: InputMaybe<Timestamp_Comparison_Exp>;
+  updated_at?: InputMaybe<Timestamptz_Comparison_Exp>;
 };
 
 /** unique or primary key constraints on table "haikus" */
@@ -117,34 +119,35 @@ export enum Haikus_Constraint {
 
 /** input type for inserting data into table "haikus" */
 export type Haikus_Insert_Input = {
-  created_at?: InputMaybe<Scalars['timestamp']['input']>;
+  created_at?: InputMaybe<Scalars['timestamptz']['input']>;
   haiku?: InputMaybe<Scalars['String']['input']>;
   id?: InputMaybe<Scalars['String']['input']>;
   image_url?: InputMaybe<Scalars['String']['input']>;
+  owner?: InputMaybe<Users_Obj_Rel_Insert_Input>;
   owner_id?: InputMaybe<Scalars['String']['input']>;
-  updated_at?: InputMaybe<Scalars['timestamp']['input']>;
+  updated_at?: InputMaybe<Scalars['timestamptz']['input']>;
 };
 
 /** aggregate max on columns */
 export type Haikus_Max_Fields = {
   __typename?: 'haikus_max_fields';
-  created_at?: Maybe<Scalars['timestamp']['output']>;
+  created_at?: Maybe<Scalars['timestamptz']['output']>;
   haiku?: Maybe<Scalars['String']['output']>;
   id?: Maybe<Scalars['String']['output']>;
   image_url?: Maybe<Scalars['String']['output']>;
   owner_id?: Maybe<Scalars['String']['output']>;
-  updated_at?: Maybe<Scalars['timestamp']['output']>;
+  updated_at?: Maybe<Scalars['timestamptz']['output']>;
 };
 
 /** aggregate min on columns */
 export type Haikus_Min_Fields = {
   __typename?: 'haikus_min_fields';
-  created_at?: Maybe<Scalars['timestamp']['output']>;
+  created_at?: Maybe<Scalars['timestamptz']['output']>;
   haiku?: Maybe<Scalars['String']['output']>;
   id?: Maybe<Scalars['String']['output']>;
   image_url?: Maybe<Scalars['String']['output']>;
   owner_id?: Maybe<Scalars['String']['output']>;
-  updated_at?: Maybe<Scalars['timestamp']['output']>;
+  updated_at?: Maybe<Scalars['timestamptz']['output']>;
 };
 
 /** response of any mutation on the table "haikus" */
@@ -169,6 +172,7 @@ export type Haikus_Order_By = {
   haiku?: InputMaybe<Order_By>;
   id?: InputMaybe<Order_By>;
   image_url?: InputMaybe<Order_By>;
+  owner?: InputMaybe<Users_Order_By>;
   owner_id?: InputMaybe<Order_By>;
   updated_at?: InputMaybe<Order_By>;
 };
@@ -196,12 +200,12 @@ export enum Haikus_Select_Column {
 
 /** input type for updating data in table "haikus" */
 export type Haikus_Set_Input = {
-  created_at?: InputMaybe<Scalars['timestamp']['input']>;
+  created_at?: InputMaybe<Scalars['timestamptz']['input']>;
   haiku?: InputMaybe<Scalars['String']['input']>;
   id?: InputMaybe<Scalars['String']['input']>;
   image_url?: InputMaybe<Scalars['String']['input']>;
   owner_id?: InputMaybe<Scalars['String']['input']>;
-  updated_at?: InputMaybe<Scalars['timestamp']['input']>;
+  updated_at?: InputMaybe<Scalars['timestamptz']['input']>;
 };
 
 /** Streaming cursor of the table "haikus" */
@@ -214,12 +218,12 @@ export type Haikus_Stream_Cursor_Input = {
 
 /** Initial value of the column from where the streaming should start */
 export type Haikus_Stream_Cursor_Value_Input = {
-  created_at?: InputMaybe<Scalars['timestamp']['input']>;
+  created_at?: InputMaybe<Scalars['timestamptz']['input']>;
   haiku?: InputMaybe<Scalars['String']['input']>;
   id?: InputMaybe<Scalars['String']['input']>;
   image_url?: InputMaybe<Scalars['String']['input']>;
   owner_id?: InputMaybe<Scalars['String']['input']>;
-  updated_at?: InputMaybe<Scalars['timestamp']['input']>;
+  updated_at?: InputMaybe<Scalars['timestamptz']['input']>;
 };
 
 /** update columns of table "haikus" */
@@ -500,19 +504,6 @@ export type Subscription_RootUsers_StreamArgs = {
   where?: InputMaybe<Users_Bool_Exp>;
 };
 
-/** Boolean expression to compare columns of type "timestamp". All fields are combined with logical 'AND'. */
-export type Timestamp_Comparison_Exp = {
-  _eq?: InputMaybe<Scalars['timestamp']['input']>;
-  _gt?: InputMaybe<Scalars['timestamp']['input']>;
-  _gte?: InputMaybe<Scalars['timestamp']['input']>;
-  _in?: InputMaybe<Array<Scalars['timestamp']['input']>>;
-  _is_null?: InputMaybe<Scalars['Boolean']['input']>;
-  _lt?: InputMaybe<Scalars['timestamp']['input']>;
-  _lte?: InputMaybe<Scalars['timestamp']['input']>;
-  _neq?: InputMaybe<Scalars['timestamp']['input']>;
-  _nin?: InputMaybe<Array<Scalars['timestamp']['input']>>;
-};
-
 /** Boolean expression to compare columns of type "timestamptz". All fields are combined with logical 'AND'. */
 export type Timestamptz_Comparison_Exp = {
   _eq?: InputMaybe<Scalars['timestamptz']['input']>;
@@ -616,6 +607,13 @@ export type Users_Mutation_Response = {
   affected_rows: Scalars['Int']['output'];
   /** data from the rows affected by the mutation */
   returning: Array<Users>;
+};
+
+/** input type for inserting object relation for remote table "users" */
+export type Users_Obj_Rel_Insert_Input = {
+  data: Users_Insert_Input;
+  /** upsert condition */
+  on_conflict?: InputMaybe<Users_On_Conflict>;
 };
 
 /** on_conflict condition type for table "users" */
@@ -746,6 +744,30 @@ export type InsertUserMutation = {
   } | null;
 };
 
+export type HailkusQueryVariables = Exact<{ [key: string]: never }>;
+
+export type HailkusQuery = {
+  __typename?: 'query_root';
+  haikus: Array<{
+    __typename?: 'haikus';
+    id: string;
+    haiku: string;
+    image_url?: string | null;
+    owner_id: string;
+    updated_at: any;
+    created_at: any;
+    owner?: {
+      __typename?: 'users';
+      id: string;
+      name: string;
+      email: string;
+      avatar_url?: string | null;
+      created_at: any;
+      updated_at: any;
+    } | null;
+  }>;
+};
+
 export type UserByIdQueryVariables = Exact<{
   id: Scalars['String']['input'];
 }>;
@@ -868,6 +890,64 @@ export type InsertUserMutationOptions = Apollo.BaseMutationOptions<
   InsertUserMutation,
   InsertUserMutationVariables
 >;
+export const HailkusDocument = gql`
+  query Hailkus {
+    haikus {
+      id
+      haiku
+      image_url
+      owner_id
+      updated_at
+      owner {
+        id
+        name
+        email
+        avatar_url
+        created_at
+        updated_at
+      }
+      created_at
+    }
+  }
+`;
+
+/**
+ * __useHailkusQuery__
+ *
+ * To run a query within a React component, call `useHailkusQuery` and pass it any options that fit your needs.
+ * When your component renders, `useHailkusQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useHailkusQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useHailkusQuery(
+  baseOptions?: Apollo.QueryHookOptions<HailkusQuery, HailkusQueryVariables>,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useQuery<HailkusQuery, HailkusQueryVariables>(HailkusDocument, options);
+}
+export function useHailkusLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<HailkusQuery, HailkusQueryVariables>,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useLazyQuery<HailkusQuery, HailkusQueryVariables>(HailkusDocument, options);
+}
+export function useHailkusSuspenseQuery(
+  baseOptions?: Apollo.SuspenseQueryHookOptions<HailkusQuery, HailkusQueryVariables>,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useSuspenseQuery<HailkusQuery, HailkusQueryVariables>(HailkusDocument, options);
+}
+export type HailkusQueryHookResult = ReturnType<typeof useHailkusQuery>;
+export type HailkusLazyQueryHookResult = ReturnType<typeof useHailkusLazyQuery>;
+export type HailkusSuspenseQueryHookResult = ReturnType<typeof useHailkusSuspenseQuery>;
+export type HailkusQueryResult = Apollo.QueryResult<HailkusQuery, HailkusQueryVariables>;
 export const UserByIdDocument = gql`
   query UserById($id: String!) {
     users_by_pk(id: $id) {
