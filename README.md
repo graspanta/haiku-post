@@ -3,9 +3,15 @@
 ## 概要
 haiku-postは、俳句投稿サービスです。
 
-<img src="images/architecture.png" width="400" />
+<figure>
+  <figcaption>サーバ構成図</figcaption>
+  <img src="images/architecture.png" width="400" />
+</figure>
 
-<img src="images/home.png" width="400" />
+<figure>
+  <figcaption>ホーム画面</figcaption>
+  <img src="images/home.png" width="400" />
+</figure>
 
 ## 機能一覧
 - ユーザ登録 
