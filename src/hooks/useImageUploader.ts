@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { v4 as uuidv4 } from 'uuid';
-import { useInsertHaikuMutation } from '../graphql/generated';
+import { useInsertHaikuMutation, HailkusDocument } from '../graphql/generated';
 import { storage } from '../firebase/config';
 import { useRecoilValue } from 'recoil';
 import { GlobalUser } from '../stores/user';
@@ -16,7 +16,9 @@ interface UploadProps {
 export const useImageUploader = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<Error>();
-  const [mutation, { error: apolloError }] = useInsertHaikuMutation();
+  const [mutation, { error: apolloError }] = useInsertHaikuMutation({
+    refetchQueries: [{ query: HailkusDocument }],
+  });
   const user = useRecoilValue(GlobalUser);
 
   const uploadStorage = (id: string, file: File, path: string) => {
