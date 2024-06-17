@@ -2,8 +2,7 @@
 
 ## 概要
 
-[haiku-post](https://haiku-post-2jef4dm1v-graspantas-projects.vercel.app/)は、俳句投稿サービスです。
-
+haiku-postは、俳句投稿サービスです。
 
 <figure>
   <figcaption>サーバ構成図</figcaption>
