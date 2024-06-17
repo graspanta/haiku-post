@@ -17,7 +17,7 @@ export const Home = () => {
           <Grid item xs={4}>
             <HaikuCard
               haiku={haiku.haiku}
-              // owner={haiku.owner?.name || ''}
+              owner={haiku.owner?.name || ''}
               created={haiku.created_at}
               fetcher={() => storage.ref(haiku.image_url!).getDownloadURL()}
             />
