@@ -34,8 +34,12 @@ haiku-postは、俳句投稿サービスです。
     <td>PostgreSQL 15.7</td>
   </tr>
   <tr>
+    <td>開発サーバ</td>
+    <td>Vite 5.2.0</td>
+  </tr>
+  <tr>
     <td>フレームワーク</td>
-    <td>Vite 5.2.0, Material UI 5.15.19</td>
+    <td>Material UI 5.15.19</td>
   </tr>
   <tr>
     <td>サービス</td>
